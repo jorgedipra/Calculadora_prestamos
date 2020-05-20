@@ -44,7 +44,7 @@
                                 <small id="CapitalHelp" class="form-text text-muted">*Numero de Cuotas</small>
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Tasa Interés </label>
+                                <label for="tasa">Tasa Interés </label>
                                 <div class="row">
                                     <div class="col">
                                         <select class="form-control" id="tasa">
@@ -62,47 +62,47 @@
                                     </select>
                                     </div>
                                 </div>
-                                <small id="emailHelp" class="form-text text-muted">*Tasa Interés Efectiva(Vencidas - Anticipada)</small>
+                                <small id="tasaHelp" class="form-text text-muted">*Tasa Interés Efectiva(Vencidas - Anticipada)</small>
                                 <br>
                                 <div class="row">
                                     <div class="col">
-                                        <input type="number" class="form-control entero" id="i_entrada" name="interes" placeholder="%" step="0.01" min="0" max="100" required>
+                                        <input type="number" class="form-control entero" id="i_entrada" name="interes" placeholder="%" step="0.01" min="0" max="100" aria-describedby="i_entrada" required>
                                     </div>
                                     <div class="col">
-                                        <input type="text" class="form-control" id="i_salida" aria-describedby="emailHelp" disabled>
+                                        <input type="text" class="form-control" id="i_salida" aria-describedby="i_salidaHelp" disabled>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col">
-                                        <small id="emailHelp" class="form-text text-muted">*Tasa Interés % Entrada</small>
+                                        <small id="i_entradaHelp" class="form-text text-muted">*Tasa Interés % Entrada</small>
                                     </div>
                                     <div class="col">
-                                        <small id="emailHelp" class="form-text text-muted">*Tasa Interés % Salida (%EMV)</small>
+                                        <small id="i_salidaHelp" class="form-text text-muted">*Tasa Interés % Salida (%EMV)</small>
                                     </div>
                                 </div>
 
                                 <!-- interes o anticipada / egectivas y vencidas -->
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Seguro </label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                                <small id="emailHelp" class="form-text text-muted">*Es opcional</small>
+                                <label for="seguros">Seguro </label>
+                                <input type="number" class="form-control entero" id="seguros" aria-describedby="segurosHelp">
+                                <small id="segurosHelp" class="form-text text-muted">*Es opcional</small>
                             </div>
                             <div class="form-group">
-                                <label for="exampleFormControlSelect1">Periodicidad</label>
-                                <select class="form-control" id="exampleFormControlSelect1">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            </select>
-                                <small id="emailHelp" class="form-text text-muted">*Periodicidad Cuota (Mensual, Bimestral, Trimestral, Semestral, Anual)</small>
+                                <label for="Periodicidad">Periodicidad</label>
+                                <select class="form-control" id="Periodicidad">
+                                    <option value="1">Mensual</option>
+                                    <option value="2">Bimestral</option>
+                                    <option value="3">Trimestral</option>
+                                    <option value="4">Semestral</option>
+                                    <option value="5">Anual</option>
+                                </select>
+                                <small id="PeriodicidadHelp" class="form-text text-muted">*Periodicidad Cuota (Mensual, Bimestral, Trimestral, Semestral, Anual)</small>
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Valor Cuota </label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                                <small id="emailHelp" class="form-text text-muted">*Valor Cuota (De acuerdo a periocidad)</small>
+                                <label for="vcouta_salida">Valor Cuota </label>
+                                <input type="text" class="form-control" id="vcouta_salida" aria-describedby="emailHelp" disabled>
+                                <small id="vcouta_salidaHelp" class="form-text text-muted">*Valor Cuota (De acuerdo a periocidad)</small>
                             </div>
                             <button type="submit" id="Calcular" class="btn btn-success">Calcular</button>
                             <button type="submit" class="btn btn-danger">Cancelar</button>

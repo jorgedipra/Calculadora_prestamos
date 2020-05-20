@@ -22,6 +22,9 @@ $("#datos_credito").submit(function() {
 function calular() {
     $capital = $("#Capital").val();
     $Cuotas = $("#Cuotas").val();
+    $Interes = $("#i_salida").val(); //% EMV
+    $Interes = parseFloat($Interes) / 100;
+
 }
 
 
