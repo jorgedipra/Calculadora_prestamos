@@ -34,10 +34,34 @@ function convercion_tasa() {
                 interes_salida = interes_entrada;
                 break;
             case "2": //Bimestral
+                if (interes_entrada > 0) {
+                    //(((1+i)^12)raiz(6))-1
+                    $cal0 = parseInt(interes_entrada) / 100;
+                    $cal1 = 1 + $cal0;
+                    $cal2 = Math.pow($cal1, 12);
+                    $cal3 = Math.pow($cal2, 1 / 6);
+                    $cal = $cal3 - 1;
 
+                    interes_salida = $cal * 100;
+                } else {
+                    invalidar('i_entrada');
+                    interes_salida = 0;
+                }
                 break;
             case "3": //Trimestral
+                if (interes_entrada > 0) {
+                    //(((1+i)^12)raiz(4))-1
+                    $cal0 = parseInt(interes_entrada) / 100;
+                    $cal1 = 1 + $cal0;
+                    $cal2 = Math.pow($cal1, 12);
+                    $cal3 = Math.pow($cal2, 1 / 4);
+                    $cal = $cal3 - 1;
 
+                    interes_salida = $cal * 100;
+                } else {
+                    invalidar('i_entrada');
+                    interes_salida = 0;
+                }
                 break;
             case "4": //Semestral
                 if (interes_entrada > 0) {
