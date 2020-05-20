@@ -7,4 +7,4 @@ ErrorDocument 404 /404
 
 RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule . index.php [L]
+RewriteRule . index.html [L]
