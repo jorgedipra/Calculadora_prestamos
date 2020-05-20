@@ -41,7 +41,7 @@ function convercion_tasa() {
             case "2": //Bimestral
                 if (interes_entrada > 0) {
                     //(((1+i)^12)raiz(6))-1
-                    $cal0 = parseInt(interes_entrada) / 100;
+                    $cal0 = parseFloat(interes_entrada) / 100;
                     $cal1 = 1 + $cal0;
                     $cal2 = Math.pow($cal1, 12);
                     $cal3 = Math.pow($cal2, 1 / 6);
@@ -56,7 +56,7 @@ function convercion_tasa() {
             case "3": //Trimestral
                 if (interes_entrada > 0) {
                     //(((1+i)^12)raiz(4))-1
-                    $cal0 = parseInt(interes_entrada) / 100;
+                    $cal0 = parseFloat(interes_entrada) / 100;
                     $cal1 = 1 + $cal0;
                     $cal2 = Math.pow($cal1, 12);
                     $cal3 = Math.pow($cal2, 1 / 4);
@@ -71,7 +71,7 @@ function convercion_tasa() {
             case "4": //Semestral
                 if (interes_entrada > 0) {
                     //(((1+i)^12)raiz(2))-1
-                    $cal0 = parseInt(interes_entrada) / 100;
+                    $cal0 = parseFloat(interes_entrada) / 100;
                     $cal1 = 1 + $cal0;
                     $cal2 = Math.pow($cal1, 12);
                     $cal3 = Math.pow($cal2, 0.5);
@@ -86,7 +86,7 @@ function convercion_tasa() {
             case "5": //Anual
                 if (interes_entrada > 0) {
                     //((1+i)^12)-1
-                    $cal0 = parseInt(interes_entrada) / 100;
+                    $cal0 = parseFloat(interes_entrada) / 100;
                     $cal1 = 1 + $cal0;
                     $cal2 = Math.pow($cal1, 12);
                     $cal = $cal2 - 1;
@@ -105,7 +105,7 @@ function convercion_tasa() {
             case "1": //mensual
                 if (interes_entrada > 0) {
                     //i=ia/1-ia
-                    $cal0 = parseInt(interes_entrada) / 100;
+                    $cal0 = parseFloat(interes_entrada) / 100;
                     $cal1 = $cal0 / (1 - $cal0);
                     interes_salida = $cal1 * 100;
                 } else {
@@ -116,7 +116,7 @@ function convercion_tasa() {
             case "2": //Bimestral
                 if (interes_entrada > 0) {
                     //i=ia/1-ia
-                    $spider0 = parseInt(interes_entrada) / 100;
+                    $spider0 = parseFloat(interes_entrada) / 100;
                     $spider1 = $spider0 / (1 - $spider0);
                     //(((1+i)^12)raiz(6))-1
                     $cal0 = $spider1;
@@ -134,7 +134,7 @@ function convercion_tasa() {
             case "3": //Trimestral
                 if (interes_entrada > 0) {
                     //i=ia/1-ia
-                    $spider0 = parseInt(interes_entrada) / 100;
+                    $spider0 = parseFloat(interes_entrada) / 100;
                     $spider1 = $spider0 / (1 - $spider0);
                     //(((1+i)^12)raiz(4))-1
                     $cal0 = $spider1;
@@ -152,7 +152,7 @@ function convercion_tasa() {
             case "4": //Semestral
                 if (interes_entrada > 0) {
                     //i=ia/1-ia
-                    $spider0 = parseInt(interes_entrada) / 100;
+                    $spider0 = parseFloat(interes_entrada) / 100;
                     $spider1 = $spider0 / (1 - $spider0);
                     //(((1+i)^12)raiz(2))-1
                     $cal0 = $spider1;
@@ -170,7 +170,7 @@ function convercion_tasa() {
             case "5": //Anual
                 if (interes_entrada > 0) {
                     //i=ia/1-ia
-                    $spider0 = parseInt(interes_entrada) / 100;
+                    $spider0 = parseFloat(interes_entrada) / 100;
                     $spider1 = $spider0 / (1 - $spider0);
                     //((1+i)^12)-1
                     $cal0 = $spider1;
