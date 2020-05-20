@@ -1,0 +1,14 @@
+body {
+    background-color: #333333;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+h1 {
+    color: #ccc;
+}
+
+#salidas {
+    display: none;
+}
