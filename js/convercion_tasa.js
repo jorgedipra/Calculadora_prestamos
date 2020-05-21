@@ -27,6 +27,14 @@ function convercion_tasa() {
     let sub_tasa = $("#sub_tasa").val();
     let interes_entrada = $("#i_entrada").val();
     let interes_salida = "0";
+    $cal = 0;
+    $cal0 = 0;
+    $cal1 = 0;
+    $cal2 = 0;
+    $cal3 = 0;
+    $cal4 = 0;
+    $spider0 = 0;
+    $spider1 = 0;
 
     if (tasa == 1) { //Vencida
         switch (sub_tasa) {
@@ -40,11 +48,11 @@ function convercion_tasa() {
                 break;
             case "2": //Bimestral
                 if (interes_entrada > 0) {
-                    //(((1+i)^12)raiz(6))-1
+                    //(((1+i)^6)raiz(12))-1
                     $cal0 = parseFloat(interes_entrada) / 100;
                     $cal1 = 1 + $cal0;
-                    $cal2 = Math.pow($cal1, 12);
-                    $cal3 = Math.pow($cal2, 1 / 6);
+                    $cal2 = Math.pow($cal1, 6);
+                    $cal3 = Math.pow($cal2, 1 / 12);
                     $cal = $cal3 - 1;
 
                     interes_salida = $cal * 100;
@@ -55,11 +63,11 @@ function convercion_tasa() {
                 break;
             case "3": //Trimestral
                 if (interes_entrada > 0) {
-                    //(((1+i)^12)raiz(4))-1
+                    //(((1+i)^4)raiz(12))-1
                     $cal0 = parseFloat(interes_entrada) / 100;
                     $cal1 = 1 + $cal0;
-                    $cal2 = Math.pow($cal1, 12);
-                    $cal3 = Math.pow($cal2, 1 / 4);
+                    $cal2 = Math.pow($cal1, 4);
+                    $cal3 = Math.pow($cal2, (1 / 12));
                     $cal = $cal3 - 1;
 
                     interes_salida = $cal * 100;
@@ -70,11 +78,11 @@ function convercion_tasa() {
                 break;
             case "4": //Semestral
                 if (interes_entrada > 0) {
-                    //(((1+i)^12)raiz(2))-1
+                    //(((1+i)^2)raiz(12))-1
                     $cal0 = parseFloat(interes_entrada) / 100;
                     $cal1 = 1 + $cal0;
-                    $cal2 = Math.pow($cal1, 12);
-                    $cal3 = Math.pow($cal2, 0.5);
+                    $cal2 = Math.pow($cal1, 2);
+                    $cal3 = Math.pow($cal2, (1 / 12));
                     $cal = $cal3 - 1;
 
                     interes_salida = $cal * 100;
@@ -85,10 +93,10 @@ function convercion_tasa() {
                 break;
             case "5": //Anual
                 if (interes_entrada > 0) {
-                    //((1+i)^12)-1
+                    //((1+i)^(1/12))-1 o (((1+i)^1)raiz(12))-1
                     $cal0 = parseFloat(interes_entrada) / 100;
                     $cal1 = 1 + $cal0;
-                    $cal2 = Math.pow($cal1, 12);
+                    $cal2 = Math.pow($cal1, (1 / 12));
                     $cal = $cal2 - 1;
 
                     interes_salida = $cal * 100;
@@ -118,11 +126,11 @@ function convercion_tasa() {
                     //i=ia/1-ia
                     $spider0 = parseFloat(interes_entrada) / 100;
                     $spider1 = $spider0 / (1 - $spider0);
-                    //(((1+i)^12)raiz(6))-1
+                    //(((1+i)^6)raiz(12))-1
                     $cal0 = $spider1;
                     $cal1 = 1 + $cal0;
-                    $cal2 = Math.pow($cal1, 12);
-                    $cal3 = Math.pow($cal2, 1 / 6);
+                    $cal2 = Math.pow($cal1, 6);
+                    $cal3 = Math.pow($cal2, 1 / 12);
                     $cal = $cal3 - 1;
 
                     interes_salida = $cal * 100;
@@ -136,11 +144,11 @@ function convercion_tasa() {
                     //i=ia/1-ia
                     $spider0 = parseFloat(interes_entrada) / 100;
                     $spider1 = $spider0 / (1 - $spider0);
-                    //(((1+i)^12)raiz(4))-1
+                    //(((1+i)^4)raiz(12))-1
                     $cal0 = $spider1;
                     $cal1 = 1 + $cal0;
-                    $cal2 = Math.pow($cal1, 12);
-                    $cal3 = Math.pow($cal2, 1 / 4);
+                    $cal2 = Math.pow($cal1, 4);
+                    $cal3 = Math.pow($cal2, (1 / 12));
                     $cal = $cal3 - 1;
 
                     interes_salida = $cal * 100;
@@ -154,11 +162,11 @@ function convercion_tasa() {
                     //i=ia/1-ia
                     $spider0 = parseFloat(interes_entrada) / 100;
                     $spider1 = $spider0 / (1 - $spider0);
-                    //(((1+i)^12)raiz(2))-1
+                    //(((1+i)^2)raiz(12))-1
                     $cal0 = $spider1;
                     $cal1 = 1 + $cal0;
-                    $cal2 = Math.pow($cal1, 12);
-                    $cal3 = Math.pow($cal2, 0.5);
+                    $cal2 = Math.pow($cal1, 2);
+                    $cal3 = Math.pow($cal2, (1 / 12));
                     $cal = $cal3 - 1;
 
                     interes_salida = $cal * 100;
@@ -172,10 +180,10 @@ function convercion_tasa() {
                     //i=ia/1-ia
                     $spider0 = parseFloat(interes_entrada) / 100;
                     $spider1 = $spider0 / (1 - $spider0);
-                    //((1+i)^12)-1
+                    //((1+i)^(1/12))-1 o (((1+i)^1)raiz(12))-1
                     $cal0 = $spider1;
                     $cal1 = 1 + $cal0;
-                    $cal2 = Math.pow($cal1, 12);
+                    $cal2 = Math.pow($cal1, (1 / 12));
                     $cal = $cal2 - 1;
 
                     interes_salida = $cal * 100;
@@ -188,7 +196,7 @@ function convercion_tasa() {
         } //::END=>switch
 
     } //::END=>if/else
-    console.log(tasa, sub_tasa, interes_salida);
+    // console.log(tasa, sub_tasa, interes_salida);
 
     return interes_salida;
 }
