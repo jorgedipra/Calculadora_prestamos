@@ -90,7 +90,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="Periodicidad">Periodicidad</label>
-                                <select class="form-control" id="Periodicidad">
+                                <select class="form-control" id="Periodicidad" disabled>
                                     <option value="1">Mensual</option>
                                     <option value="2">Bimestral</option>
                                     <option value="3">Trimestral</option>
@@ -101,10 +101,19 @@
                             </div>
                             <div class="form-group">
                                 <label for="vcouta_salida">Valor Cuota </label>
-                                <input type="text" class="form-control" id="vcouta_salida" aria-describedby="emailHelp" disabled>
-                                <small id="vcouta_salidaHelp" class="form-text text-muted">*Valor Cuota (De acuerdo a periocidad)</small>
+                                <div class="row">
+                                    <div class="col">
+                                        <input type="text" class="form-control" id="vcouta_salida" aria-describedby="emailHelp" disabled>
+                                        <small id="vcouta_salidaHelp" class="form-text text-muted">*Valor Cuota (De acuerdo a periocidad)</small>
+                                    </div>
+                                    <div class="col-3">
+                                        <button type="submit" id="VCalcular" class="btn btn-info">Valor Cuota</button>
+                                    </div>
+                                </div>
+
+
                             </div>
-                            <button type="submit" id="Calcular" class="btn btn-success">Calcular</button>
+                            <button type="submit" id="Calcular" class="btn btn-success">Mostrar Mes a Mes</button>
                             <button type="submit" class="btn btn-danger">Cancelar</button>
                         </form>
                     </div>

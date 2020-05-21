@@ -18,6 +18,12 @@ $("#datos_credito").submit(function() {
     $("#entradas").hide();
     $("#salidas").show();
 });
+$("#VCalcular").click(function() {
+    if ($("#Capital").val() != "" && $("#Cuotas").val() != "" && $("#i_entrada").val() != "") {
+        event.preventDefault();
+        Valor_Cuota();
+    }
+});
 
 function calular() {
     $capital = $("#Capital").val();
@@ -28,28 +34,23 @@ function calular() {
     $("#vcouta_salida").val("0");
 }
 
-$("#i_entrada").keyup(function() {
-    Valor_Cuota();
-});
-$("#sub_tasa").change(function() {
-    Valor_Cuota();
-});
-$("#tasa").change(function() {
-    Valor_Cuota();
-});
 //=((1-(1+F4)^(-48)))/F4
 function Valor_Cuota() {
     $capital = parseFloat($("#Capital").val());
     $Interes = $("#i_salida").val(); //% EMV
+    console.log("entrada:", $Interes);
+
     $Interes = parseFloat($Interes) / 100;
+    console.log("entrada %100:", $Interes);
+
     $Cuotas = parseFloat($("#Cuotas").val());
     $cal1 = 1 + $Interes;
     $cal2 = Math.pow($cal1, ($Cuotas * (-1)));
     $cal3 = 1 - $cal2;
     $cal4 = $cal3 / $Interes;
     $cal5 = $capital / $cal4;
-    // console.log($capital, $Interes, $Cuotas);
-    // console.log($cal1, $cal2, $cal3, $cal4, $cal5);
+    console.log($capital, $Interes, $Cuotas);
+    console.log($cal1, $cal2, $cal3, $cal4, $cal5);
 
 
     $("#vcouta_salida").val($cal5);
