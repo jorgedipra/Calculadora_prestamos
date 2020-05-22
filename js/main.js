@@ -26,12 +26,68 @@ $("#VCalcular").click(function() {
 });
 
 function calular() {
-    $capital = $("#Capital").val();
-    $Cuotas = $("#Cuotas").val();
-    $Interes = $("#i_salida").val(); //% EMV
+    Valor_Cuota();
+    $capital = parseFloat($("#Capital").val());
+    $Cuotas = parseInt($("#Cuotas").val());
+    $Interes = parseFloat($("#i_salida").val()); //% EMV
     $Interes = parseFloat($Interes) / 100;
+    $vcouta = parseFloat($("#vcouta_salida").val());
+    var cuerpo = "";
+    var Amortizacion = 0;
+    var Saldo = 0;
+    var Interes = 0;
+    for (let i = 1; i <= $Cuotas; i++) {
 
-    $("#vcouta_salida").val("0");
+        if (i == 1) {
+            Interes = $capital * $Interes;
+            Amortizacion = $vcouta - $Interes;
+            Saldo = $capital - Amortizacion;
+            cuerpo += `
+            <tr>
+                <th scope="row">${i}</th>
+                <td>${financial($capital)}</td>
+                <td>${ financial(Interes) }</td>
+                <td>${financial(Amortizacion)}</td>
+                <td>${financial($vcouta)}</td>
+                <td>${ financial(Saldo )}</td>
+            </tr>
+            `;
+        } else if (i == $Cuotas) {
+            $capital = Saldo;
+            Saldo = $capital - Amortizacion;
+            Interes = $capital * $Interes;
+            Amortizacion = $vcouta - Interes;
+            $vcouta = $capital + Interes;
+            cuerpo += `
+            <tr>
+                <th scope="row">${i}</th>-
+                <td>${financial($capital)}</td>
+                <td>${ financial(Interes)}</td>
+                <td>${financial(Amortizacion)}</td>
+                <td>${financial($vcouta)}</td>
+                <td>${ financial(Saldo )}</td>
+            </tr>
+            `;
+        } else {
+            $capital = Saldo;
+            Saldo = $capital - Amortizacion;
+            Interes = $capital * $Interes;
+            Amortizacion = $vcouta - Interes;
+            cuerpo += `
+            <tr>
+                <th scope="row">${i}</th>-
+                <td>${financial($capital)}</td>
+                <td>${ financial(Interes)}</td>
+                <td>${financial(Amortizacion)}</td>
+                <td>${financial($vcouta)}</td>
+                <td>${ financial(Saldo )}</td>
+            </tr>
+            `;
+        }
+
+    }
+
+    $("#Cuerpo").html(cuerpo);
 }
 
 //=((1-(1+F4)^(-48)))/F4
@@ -72,4 +128,9 @@ function include(archivo) {
     oScript.charset = "utf-8";
     oScript.src = origen + archivo + extention;
     oHead.appendChild(oScript);
+}
+
+//dos decimales
+function financial(x) {
+    return Number.parseFloat(x).toFixed(2);
 }
