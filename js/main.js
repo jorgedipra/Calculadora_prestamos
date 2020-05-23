@@ -130,6 +130,18 @@ function include(archivo) {
 }
 
 //dos decimales
-function financial(x) {
-    return Number.parseFloat(x).toFixed(2);
+// function financial(x) {
+//     return Number.parseFloat(x).toFixed(2);
+// }
+
+//Separador de miles 
+function financial(n) {
+    n = Number.parseFloat(n).toFixed(2)
+    n = n.toString()
+    while (true) {
+        var n2 = n.replace(/(\d)(\d{3})($|,|\.)/g, '$1,$2$3')
+        if (n == n2) break
+        n = n2
+    }
+    return n
 }
