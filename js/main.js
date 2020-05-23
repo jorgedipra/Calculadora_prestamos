@@ -40,7 +40,7 @@ function calular() {
 
         if (i == 1) {
             Interes = $capital * $Interes;
-            Amortizacion = $vcouta - $Interes;
+            Amortizacion = $vcouta - Interes;
             Saldo = $capital - Amortizacion;
             cuerpo += `
             <tr>
@@ -54,10 +54,9 @@ function calular() {
             `;
         } else if (i == $Cuotas) {
             $capital = Saldo;
-            Saldo = $capital - Amortizacion;
             Interes = $capital * $Interes;
             Amortizacion = $vcouta - Interes;
-            $vcouta = $capital + Interes;
+            Saldo = $capital - Amortizacion;
             cuerpo += `
             <tr>
                 <th scope="row">${i}</th>-
@@ -65,14 +64,14 @@ function calular() {
                 <td>${ financial(Interes)}</td>
                 <td>${financial(Amortizacion)}</td>
                 <td>${financial($vcouta)}</td>
-                <td>${ financial(Saldo )}</td>
+                <td>${ financial(Saldo)}</td>
             </tr>
             `;
         } else {
             $capital = Saldo;
-            Saldo = $capital - Amortizacion;
             Interes = $capital * $Interes;
             Amortizacion = $vcouta - Interes;
+            Saldo = $capital - Amortizacion;
             cuerpo += `
             <tr>
                 <th scope="row">${i}</th>-
