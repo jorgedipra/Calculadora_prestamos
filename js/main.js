@@ -31,7 +31,7 @@ function calular() {
     $Cuotas = parseInt($("#Cuotas").val());
     $Interes = parseFloat($("#i_salida").val()); //% EMV
     $Interes = parseFloat($Interes) / 100;
-    $vcouta = parseFloat($("#vcouta_salida").val());
+    $vcouta = parseFloat($("#vcouta_salida2").val());
     var cuerpo = "";
     var Amortizacion = 0;
     var Saldo = 0;
@@ -93,10 +93,10 @@ function calular() {
 function Valor_Cuota() {
     $capital = parseFloat($("#Capital").val());
     $Interes = $("#i_salida").val(); //% EMV
-    console.log("entrada:", $Interes);
+    // console.log("entrada:", $Interes);
 
     $Interes = parseFloat($Interes) / 100;
-    console.log("entrada %100:", $Interes);
+    // console.log("entrada %100:", $Interes);
 
     $Cuotas = parseFloat($("#Cuotas").val());
     $cal1 = 1 + $Interes;
@@ -104,11 +104,12 @@ function Valor_Cuota() {
     $cal3 = 1 - $cal2;
     $cal4 = $cal3 / $Interes;
     $cal5 = $capital / $cal4;
-    console.log($capital, $Interes, $Cuotas);
-    console.log($cal1, $cal2, $cal3, $cal4, $cal5);
+    // console.log($capital, $Interes, $Cuotas);
+    // console.log($cal1, $cal2, $cal3, $cal4, $cal5);
 
 
-    $("#vcouta_salida").val($cal5);
+    $("#vcouta_salida").val(financial($cal5));
+    $("#vcouta_salida2").val($cal5);
 }
 
 
@@ -136,12 +137,39 @@ function include(archivo) {
 
 //Separador de miles 
 function financial(n) {
-    n = Number.parseFloat(n).toFixed(2)
-    n = n.toString()
-    while (true) {
-        var n2 = n.replace(/(\d)(\d{3})($|,|\.)/g, '$1,$2$3')
-        if (n == n2) break
-        n = n2
+    if (n > 1000000000) {
+        n = Number.parseFloat(n).toFixed(2)
+        n = n.toString()
+        while (true) {
+            var n2 = n.replace(/(\d)(\d{3})($|,|\.)/g, '$1,$2$3')
+            if (n == n2) break
+            n = n2
+        }
+        var n2 = n.replace(/(\w+)\,(\w+)/, "$1\"$2'")
+
+        return n2
+
+    } else if (n > 1000000) {
+        n = Number.parseFloat(n).toFixed(2)
+        n = n.toString()
+        while (true) {
+            var n2 = n.replace(/(\d)(\d{3})($|,|\.)/g, '$1,$2$3')
+            if (n == n2) break
+            n = n2
+        }
+        var n2 = n.replace(/(\w+)\,(\w+)/, "$1'$2")
+
+        return n2
+
+    } else {
+        n = Number.parseFloat(n).toFixed(2)
+        n = n.toString()
+        while (true) {
+            var n2 = n.replace(/(\d)(\d{3})($|,|\.)/g, '$1,$2$3')
+            if (n == n2) break
+            n = n2
+        }
+        return n
     }
-    return n
+
 }
