@@ -24,7 +24,7 @@
         </div>
         <br>
         <div id="entradas" class="row">
-            <div class="col-lg-6 col-md-6 col-sm-12">
+            <div class="col-lg-6 col-md-5 col-sm-12">
                 <div class="card">
                     <div class="card-header">
                         <h5 class="card-title">Datos del Credito</h5>
@@ -40,7 +40,7 @@
                                 <label for="Capital">Plazo </label>
                                 <input list="Plazo" class="form-control entero" id="Cuotas" name="Cuotas" placeholder="Cuotas" required>
                                 <datalist id="Plazo">
-                            </datalist>
+                                </datalist>
                                 <small id="CapitalHelp" class="form-text text-muted">*Numero de Cuotas</small>
                             </div>
                             <div class="form-group">
@@ -83,7 +83,7 @@
 
                                 <!-- interes o anticipada / egectivas y vencidas -->
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" style="display:none">
                                 <label for="seguros">Seguro </label>
                                 <input type="number" class="form-control entero" id="seguros" aria-describedby="segurosHelp">
                                 <small id="segurosHelp" class="form-text text-muted">*Opcional</small>
@@ -97,7 +97,7 @@
                                     <option value="4">Semestral</option>
                                     <option value="5">Anual</option>
                                 </select>
-                                <small id="PeriodicidadHelp" class="form-text text-muted">*Periodicidad Cuota (Mensual, Bimestral, Trimestral, Semestral, Anual)</small>
+                                <small id="PeriodicidadHelp" class="form-text text-muted">*Periodicidad Cuota (Mensual, Trimestral, Semestral)</small>
                             </div>
                             <div class="form-group">
                                 <label for="vcouta_salida">Valor Cuota </label>
@@ -107,12 +107,10 @@
                                         <input type="hidden" class="form-control" id="vcouta_salida2" aria-describedby="emailHelp" disabled>
                                         <small id="vcouta_salidaHelp" class="form-text text-muted">*Valor Cuota (De acuerdo a periocidad)</small>
                                     </div>
-                                    <div class="col-3">
+                                    <div class="col-lg-3 col-md-12 col-sm-12">
                                         <button type="submit" id="VCalcular" class="btn btn-info">Valor Cuota</button>
                                     </div>
                                 </div>
-
-
                             </div>
                             <button type="submit" id="Calcular" class="btn btn-success">Mostrar Mes a Mes</button>
                             <button type="submit" class="btn btn-danger">Cancelar</button>
@@ -120,41 +118,68 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 col-md-6 col-sm-12">
+            <div class="col-lg-6 col-md-7 col-sm-12">
                 <div class="card">
                     <div class="card-header">
                         <h5 class="card-title">Pagos</h5>
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">Pagos Extraordinario</h5>
-                        <div class="form-group">
-                            <label for="exampleFormControlSelect1">Periodo</label>
-                            <select class="form-control" id="exampleFormControlSelect1">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            </select>
+                        <table class="table abono">
+                            <thead class="thead-dark abono">
+                                <tr>
+                                    <th scope="col">Abono <br> Extra </th>
+                                    <th scope="col">Tipo de<br> Disminución</th>
+                                    <th scope="col">Cuota <br> Afectada</th>
+                                    <th scope="col">Nueva <br> Cuota</th>
+                                    <th scope="col">Disminución <br>de Cuota</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-light abono">
+                                <tr>
+                                    <th scope="row">1500000</th>
+                                    <td>Plazo</td>
+                                    <td>10</td>
+                                    <th>284.460,95</th>
+                                    <td>NO</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">100000</th>
+                                    <td>Couta</td>
+                                    <td>20</td>
+                                    <th>184.460,95</th>
+                                    <td>30</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <hr>
+                        <h5 class="card-title">Nuevo Abono</h5>
+                        <div class="form-group row">
+                            <div class="col-6">
+                                <button type="button" id="AbonoPlazo" class="btn btn-success">Disminución Plazo</button>
+                            </div>
+                            <div class="col-6">
+                                <button type="button" id="AbonoCuota" class="btn btn-success">Disminución Cuota</button>
+                            </div>
+                            <div class="col">
+                                <small id="AbonoPlazoHelp" class="form-text text-muted">*Incluye Cuota</small>
+                            </div>
+                            <div class="col">
+                                <small id="AbonoCuotaHelp" class="form-text text-muted">*No incluye Cuota</small>
+                            </div>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Valor</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                            <small id="emailHelp" class="form-text text-muted">Capital</small>
+                            <label for="Abono">Valor</label>
+                            <input type="number" class="form-control" id="Abono" placeholder="Abono" aria-describedby="emailHelp" required>
+                            <small id="AbonoHelp" class="form-text text-muted">*Cantidad a Abonar</small>
                         </div>
                         <div class="form-group">
-                            <label for="exampleFormControlSelect1">Disminución</label>
-                            <select class="form-control" id="exampleFormControlSelect1">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            </select>
-                            <small id="emailHelp" class="form-text text-muted">Cuota</small>
+                            <label for="Capital">Cuota </label>
+                            <input list="newPlazo" class="form-control entero" id="newCuotas" name="newCuotas" placeholder="Periodo a Abonar" required>
+                            <datalist id="newPlazo">
+                            </datalist>
+                            <small id="newCapitalHelp" class="form-text text-muted">*La Cuota a afectar</small>
                         </div>
-                        <button type="submit" class="btn btn-success">Abonar</button>
-                        <button type="submit" class="btn btn-danger">Cancelar</button>
                     </div>
                 </div>
             </div>
@@ -182,22 +207,10 @@
             </thead>
             <tbody id="Cuerpo" class="bg-light">
                 <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
+                    <th scope="row"></th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
             </tbody>
         </table>

@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $cuotas = 36;
+    $cuotas = 48;
     let plazo = '';
     for (let i = 1; i <= $cuotas; i++) {
         plazo += '<option value="' + i + '">';

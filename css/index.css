@@ -12,3 +12,10 @@ h1 {
 #salidas {
     display: none;
 }
+
+.abono>tr>th,
+.abono>tr>td {
+    font-size: 12px;
+    text-align: center;
+    padding: inherit;
+}
