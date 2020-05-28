@@ -8,6 +8,7 @@ $(document).ready(function() {
 })
 include('validar');
 include('convercion_tasa');
+include('Abono');
 
 $("#datos_credito").submit(function() {
     if ($('.entero').hasClass("is-invalid")) {
