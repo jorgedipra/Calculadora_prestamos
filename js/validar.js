@@ -40,6 +40,40 @@ $('.entero').on("keyup", function() {
 
 
 });
+$("#newCuotasp").on("keyup", function() {
+    let cuota = 0;
+    let valor = $("#newCuotasp").val();
+    if (newCuotaD == '') {
+        cuota = $("#Cuotas").val();
+        if (valor > cuota || valor == 0) {
+            invalidar('newCuotasp')
+        }
+    } else {
+        cuota = $("#Cuotas").val();
+        min = newCuotaD;
+        if (valor > cuota || valor <= min) {
+            invalidar('newCuotasp')
+        }
+    }
+
+});
+$("#newCuotasc").on("keyup", function() {
+    let cuota = 0;
+    let valor = $("#newCuotasc").val();
+    if (newCuotaD == '') {
+        cuota = $("#Cuotas").val();
+        if (valor > cuota || valor == 0) {
+            invalidar('newCuotasc')
+        }
+    } else {
+        cuota = $("#Cuotas").val();
+        min = newCuotaD;
+        if (valor > cuota || valor <= min) {
+            invalidar('newCuotasc')
+        }
+    }
+
+});
 
 function validar(id) {
     $("#" + id).addClass('is-valid');

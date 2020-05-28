@@ -1,3 +1,4 @@
+let cuotasmax = 48;
 $(document).ready(function() {
     $cuotas = 48;
     let plazo = '';
@@ -92,6 +93,9 @@ function calular() {
 
 //=((1-(1+F4)^(-48)))/F4
 function Valor_Cuota() {
+    $("#AbonoCuota").removeAttr("disabled");
+    $("#AbonoPlazo").removeAttr("disabled");
+
     $capital = parseFloat($("#Capital").val());
     $Interes = $("#i_salida").val(); //% EMV
     // console.log("entrada:", $Interes);
@@ -108,6 +112,12 @@ function Valor_Cuota() {
     // console.log($capital, $Interes, $Cuotas);
     // console.log($cal1, $cal2, $cal3, $cal4, $cal5);
 
+    if ($Cuotas > cuotasmax) {
+        alert("El Maximo de Cuotas Permitidos son 48");
+        $("#Cuotas").focus();
+        event.preventDefault();
+        return false;
+    }
 
     $("#vcouta_salida").val(financial($cal5));
     $("#vcouta_salida2").val($cal5);
