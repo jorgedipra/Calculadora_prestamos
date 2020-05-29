@@ -65,6 +65,12 @@ function calular() {
             Interes = $capital * $Interes;
             Amortizacion = $vcouta - Interes;
             Saldo = $capital - Amortizacion;
+            if (Saldo <= 0) {
+                console.log('Saldo:', Saldo);
+                Amortizacion = $capital;
+                $vcouta = Amortizacion + Interes;
+                Saldo = 0;
+            }
             cuerpo += `
             <tr>
                 <th scope="row">${i}</th>-
@@ -126,11 +132,11 @@ function calular() {
             }
 
             if (Saldo <= 0) {
-                $vcouta = $vcouta + Saldo;
-                Amortizacion = $vcouta - Interes;
+                console.log('Saldo:', Saldo);
+                Amortizacion = $capital;
+                $vcouta = Amortizacion + Interes;
                 Saldo = 0;
             }
-            console.log($vcouta);
 
             cuerpo += `
             <tr>
