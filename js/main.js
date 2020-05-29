@@ -35,16 +35,17 @@ function calular() {
     Valor_Cuota();
     $capital = parseFloat($("#Capital").val());
     $Cuotas = parseInt($("#Cuotas").val());
+    $couta_ = 0;
     $Interes = parseFloat($("#i_salida").val()); //% EMV
     $Interes = parseFloat($Interes) / 100;
-    $vcouta = parseFloat($("#vcouta_salida2").val());
+    // $vcouta = parseFloat($("#vcouta_salida2").val());
     $nuevo_NCuotas = 0;
     var cuerpo = "";
     var Amortizacion = 0;
     var Saldo = 0;
     var Interes = 0;
     for (let i = 1; i <= $Cuotas; i++) {
-
+        $vcouta = parseFloat($("#vcouta_salida2").val());
         if (i == 1) { //primera
             Interes = $capital * $Interes;
             Amortizacion = $vcouta - Interes;
@@ -102,7 +103,6 @@ function calular() {
                 $N_cuota = ($numera1 - $numera2) / $denomina;
                 $nuevo_NCuotasC = (i + 1) + Math.round($N_cuota);
                 arraycuotaA[i] = $nuevo_NCuotasC;
-
             }
             if ($nuevo_NCuotas == i) { //Ajuste de Pagos extraordinarios
                 console.log(i);
@@ -112,12 +112,25 @@ function calular() {
             Interes = $capital * $Interes;
             Amortizacion = $vcouta - Interes;
             Saldo = $capital - Amortizacion;
+            if ($couta_ != 0) {
+                $vcouta = $couta_;
+            }
+            if (arraycuota2[i] !== undefined) {
+                //valor de nuevo cuota
+                //Saldo/((1-(1+i)^-n))/i
+                $numerador_ = parseFloat(Saldo);
+                $n = $Cuotas - i;
+                $denominador_ = ((1 - Math.pow((1 + $Interes), -$n))) / $Interes;
+                $couta_ = $numerador_ / $denominador_;
+                $("#vcouta_salida2").val($couta_);
+            }
 
             if (Saldo <= 0) {
                 $vcouta = $vcouta + Saldo;
                 Amortizacion = $vcouta - Interes;
                 Saldo = 0;
             }
+            console.log($vcouta);
 
             cuerpo += `
             <tr>
@@ -126,7 +139,7 @@ function calular() {
                 <td>${ financial(Interes)}</td>
                 <td>${financial(Amortizacion)}</td>
                 <td>${financial($vcouta)}</td>
-                <td>${ financial(Saldo )}</td>
+                <td>${ financial(Saldo)}</td>
             </tr>
             `;
             if (Saldo <= 0) {
