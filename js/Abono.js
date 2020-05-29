@@ -107,7 +107,7 @@ function bono_cuota() {
                 <td>Cuota</td>
                 <td>${$cuota_afectada}</td>
                 <th scope="row">${financial($new_cuota)}</th>
-                <td>A: ${arraycuotaA[$cuota_afectada]}</td>
+                <td>-</td>
             </tr>
             `;
     $("#bodyAbono").html(cuerpo);
@@ -142,7 +142,7 @@ function bono_plazo() {
                 <td>Plazo</td>
                 <td>${$cuota_afectada}</td>
                 <th scope="row">${financial($abono)}</th>
-                <td>NO</td>
+                <td>-</td>
             </tr>
             `;
     $("#bodyAbono").html(cuerpo);
