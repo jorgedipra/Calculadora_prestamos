@@ -1,5 +1,7 @@
 let cuotasmax = 48;
 var arraycuota = new Array();
+var arraycuota2 = new Array();
+var arraycuotaA = new Array();
 var temp_cuota = 0;
 $(document).ready(function() {
     $cuotas = 48;
@@ -87,9 +89,22 @@ function calular() {
                 $numera2 = Math.log($Cuota - $Interes * $Saldo) / Math.log(10);
                 $N_cuota = ($numera1 - $numera2) / $denomina;
                 $nuevo_NCuotas = (i + 2) + Math.round($N_cuota);
-                console.log($nuevo_NCuotas);
             }
-            if ($nuevo_NCuotas == i) {
+            if (arraycuota2[i] !== undefined) {
+                temp_cuota = $vcouta;
+                $Cuota = parseFloat($("#vcouta_salida2").val());
+                $vcouta = parseFloat(arraycuota2[i]) + parseFloat($Cuota);
+                $Saldo = Saldo - ($vcouta - Interes);
+                //LOG(Cuota)-LOG(Cuota-i*VP)/LOG(1+i)
+                $denomina = Math.log(1 + $Interes) / Math.log(10);
+                $numera1 = Math.log($Cuota) / Math.log(10);
+                $numera2 = Math.log($Cuota - $Interes * $Saldo) / Math.log(10);
+                $N_cuota = ($numera1 - $numera2) / $denomina;
+                $nuevo_NCuotasC = (i + 1) + Math.round($N_cuota);
+                arraycuotaA[i] = $nuevo_NCuotasC;
+
+            }
+            if ($nuevo_NCuotas == i) { //Ajuste de Pagos extraordinarios
                 console.log(i);
                 break;
             }
@@ -97,6 +112,13 @@ function calular() {
             Interes = $capital * $Interes;
             Amortizacion = $vcouta - Interes;
             Saldo = $capital - Amortizacion;
+
+            if (Saldo <= 0) {
+                $vcouta = $vcouta + Saldo;
+                Amortizacion = $vcouta - Interes;
+                Saldo = 0;
+            }
+
             cuerpo += `
             <tr>
                 <th scope="row">${i}</th>-

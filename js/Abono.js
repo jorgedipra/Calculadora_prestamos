@@ -98,15 +98,16 @@ function bono_cuota() {
     $cuota_afectada = $("#newCuotasc").val();
     $vcouta = $("#vcouta_salida2").val();
     $new_cuota = parseFloat($vcouta) + parseFloat($abono);
-    $("#vcouta_salida2").val($new_cuota);
-
+    $vabono = parseFloat($abono) - parseFloat($("#vcouta_salida2").val());
+    arraycuota2[$cuota_afectada] = $abono;
+    calular();
     cuerpo += `
             <tr>
                 <th scope="row">${financial($abono)}</th>
                 <td>Cuota</td>
                 <td>${$cuota_afectada}</td>
                 <th scope="row">${financial($new_cuota)}</th>
-                <td>1</td>
+                <td>A: ${arraycuotaA[$cuota_afectada]}</td>
             </tr>
             `;
     $("#bodyAbono").html(cuerpo);
