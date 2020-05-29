@@ -1,4 +1,6 @@
 let cuotasmax = 48;
+var arraycuota = new Array();
+var temp_cuota = 0;
 $(document).ready(function() {
     $cuotas = 48;
     let plazo = '';
@@ -34,13 +36,14 @@ function calular() {
     $Interes = parseFloat($("#i_salida").val()); //% EMV
     $Interes = parseFloat($Interes) / 100;
     $vcouta = parseFloat($("#vcouta_salida2").val());
+    $nuevo_NCuotas = 0;
     var cuerpo = "";
     var Amortizacion = 0;
     var Saldo = 0;
     var Interes = 0;
     for (let i = 1; i <= $Cuotas; i++) {
 
-        if (i == 1) {
+        if (i == 1) { //primera
             Interes = $capital * $Interes;
             Amortizacion = $vcouta - Interes;
             Saldo = $capital - Amortizacion;
@@ -54,7 +57,7 @@ function calular() {
                 <td>${ financial(Saldo )}</td>
             </tr>
             `;
-        } else if (i == $Cuotas) {
+        } else if (i == $Cuotas) { //Ultima
             $capital = Saldo;
             Interes = $capital * $Interes;
             Amortizacion = $vcouta - Interes;
@@ -69,7 +72,27 @@ function calular() {
                 <td>${ financial(Saldo)}</td>
             </tr>
             `;
-        } else {
+        } else { //las demas
+            if (temp_cuota != 0) {
+                $vcouta = temp_cuota;
+            }
+            if (arraycuota[i] !== undefined) {
+                temp_cuota = $vcouta;
+                $Cuota = parseFloat($("#vcouta_salida2").val());
+                $vcouta = arraycuota[i];
+                $Saldo = Saldo - ($vcouta - Interes);
+                //LOG(Cuota)-LOG(Cuota-i*VP)/LOG(1+i)
+                $denomina = Math.log(1 + $Interes) / Math.log(10);
+                $numera1 = Math.log($Cuota) / Math.log(10);
+                $numera2 = Math.log($Cuota - $Interes * $Saldo) / Math.log(10);
+                $N_cuota = ($numera1 - $numera2) / $denomina;
+                $nuevo_NCuotas = (i + 2) + Math.round($N_cuota);
+                console.log($nuevo_NCuotas);
+            }
+            if ($nuevo_NCuotas == i) {
+                console.log(i);
+                break;
+            }
             $capital = Saldo;
             Interes = $capital * $Interes;
             Amortizacion = $vcouta - Interes;
@@ -84,6 +107,9 @@ function calular() {
                 <td>${ financial(Saldo )}</td>
             </tr>
             `;
+            if (Saldo <= 0) {
+                break;
+            }
         }
 
     }

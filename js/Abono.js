@@ -10,7 +10,7 @@ $("#AbonoPlazo").click(function() {
     $("#AbonoCuota").attr("disabled", 'true');
     $("#formPlazo").show();
     $("#AbonoP").focus();
-
+    $("#pla_nombre").html("<strong>(Este valor debe ser superior a la cuota: <u>" + $("#vcouta_salida").val() + " )</u></strong>");
     cuotasCal('plazo');
 });
 
@@ -26,8 +26,8 @@ $("#AbonoCuota").click(function() {
     cuotasCal('cuota');
 });
 $("#formCuota").submit(function() {
-    $cuotasmax = $("#Cuotas").val();
-    $Cuotas = $("#newCuotasc").val();
+    $cuotasmax = parseInt($("#Cuotas").val());
+    $Cuotas = parseInt($("#newCuotasc").val());
     if ($Cuotas > $cuotasmax) {
         alert("El Maximo de Cuotas Permitidos son " + $cuotasmax);
         $("#newCuotasc").focus();
@@ -47,8 +47,8 @@ $("#formCuota").submit(function() {
         .show();
 });
 $("#formPlazo").submit(function() {
-    $cuotasmax = $("#Cuotas").val();
-    $Cuotas = $("#newCuotasp").val();
+    $cuotasmax = parseInt($("#Cuotas").val());
+    $Cuotas = parseInt($("#newCuotasp").val());
     if ($Cuotas > $cuotasmax) {
         alert("El Maximo de Cuotas Permitidos son " + $cuotasmax);
         $("#newCuotasp").focus();
@@ -132,10 +132,12 @@ function bono_plazo() {
     cuerpo = $("#bodyAbono").html();
     $abono = $("#AbonoP").val();
     $cuota_afectada = $("#newCuotasp").val();
+    $vabono = parseFloat($abono) - parseFloat($("#vcouta_salida2").val());
+    arraycuota[$cuota_afectada] = $abono;
 
     cuerpo += `
             <tr>
-                <th scope="row">${financial($abono)}</th>
+                <th scope="row">${financial($vabono)}</th>
                 <td>Plazo</td>
                 <td>${$cuota_afectada}</td>
                 <th scope="row">${financial($abono)}</th>
